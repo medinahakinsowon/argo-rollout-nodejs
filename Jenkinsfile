@@ -6,23 +6,12 @@ pipeline {
      }
     environment {
     DOCKERHUB_CREDENTIALS = credentials('karo-dockerhub')
-    APP_NAME = "ooghenekaro/bluegreen-rollout-oct"
+    APP_NAME = "ooghenekaro/blue-green-rollout-july24"
     }
     stages { 
         stage('SCM Checkout') {
             steps{
            git branch: 'main', url: 'https://github.com/ooghenekaro/Argo-rollout-nodejs.git'
-            }
-        }
-        // run sonarqube test
-        stage('Run Sonarqube') {
-            environment {
-                scannerHome = tool 'ibt-sonarqube';
-            }
-            steps {
-              withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
-                sh "${scannerHome}/bin/sonar-scanner"
-              }
             }
         }
         stage('Build docker image') {
