@@ -5,13 +5,13 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
      }
     environment {
-    DOCKERHUB_CREDENTIALS = credentials('karo-dockerhub')
-    APP_NAME = "ooghenekaro/blue-green-rollout-july24"
+    DOCKERHUB_CREDENTIALS = credentials('medinat-dockerhub')
+    APP_NAME = "medinahakinsowon/blue-green-rollout"
     }
     stages { 
         stage('SCM Checkout') {
             steps{
-           git branch: 'main', url: 'https://github.com/ooghenekaro/Argo-rollout-nodejs.git'
+           git branch: 'main', url: 'https://github.com/medinahakinsowon/argo-rollout-nodejs.git'
             }
         }
         stage('Build docker image') {
